@@ -11,10 +11,11 @@
 * concat是Gulp标配，不解释
 
 ## 使用方式
+先安装：
 > npm install
 
 成功之后执行测试命令：
 > gulp watch
 
-发布命令
+发布命令：
 > gulp publish
