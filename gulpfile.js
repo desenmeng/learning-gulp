@@ -33,12 +33,12 @@ gulp.task('js', function () {
     .pipe(webpack(config))
     .pipe(gulp.dest('./build'));
 });
-
 gulp.task('css', function () {
   gulp.src(['./css/main.css', './css/view.css'])
     .pipe(concat('app.css'))
     .pipe(gulp.dest('./build'));
 });
+
 gulp.task('publish-js', function () {
   gulp.src(['./js'])
     .pipe(webpack(config))
@@ -65,10 +65,6 @@ gulp.task('publish-css', function () {
     .pipe(rev.manifest())
     .pipe(gulp.dest('./build/rev/css'));
 });
-gulp.task('watch', function () {
-  gulp.watch('./css/*.css', ['css']);
-  gulp.watch('./js/*.js', ['js']);
-});
 gulp.task('publish-html', function () {
   gulp.src(['./build/rev/**/*.json', './index.html'])
     .pipe(revCollector({
@@ -79,6 +75,8 @@ gulp.task('publish-html', function () {
     .pipe(gulp.dest('./dist/'));
 });
 
+gulp.task('watch', function () {
+  gulp.watch('./css/*.css', ['css']);
+  gulp.watch('./js/*.js', ['js']);
+});
 gulp.task('publish', ['publish-css','publish-js','publish-html']);
-
-
