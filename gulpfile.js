@@ -13,7 +13,7 @@ var concat = require('gulp-concat');
 var shrink = require('gulp-cssshrink');
 var rev = require('gulp-rev');
 var revCollector = require('gulp-rev-collector');
-var revReplace = require("gulp-rev-replace");
+var runSequence = require('run-sequence');
 
 var config = require('./webpack.config');
 var qiniu = {
@@ -35,7 +35,7 @@ gulp.task('css', function () {
     .pipe(gulp.dest('./build'));
 });
 gulp.task('publish-js', function () {
-  gulp.src(['./js'])
+  return gulp.src(['./js'])
     .pipe(webpack(config))
     .pipe(uglify())
     .pipe(rev())
@@ -48,7 +48,7 @@ gulp.task('publish-js', function () {
     .pipe(gulp.dest('./build/rev/js'));
 });
 gulp.task('publish-css', function () {
-   gulp.src(['./css/main.css', './css/view.css'])
+  return gulp.src(['./css/main.css', './css/view.css'])
     .pipe(concat('app.css'))
     .pipe(shrink())
     .pipe(rev())
@@ -65,7 +65,7 @@ gulp.task('watch', function () {
   gulp.watch('./js/*.js', ['js']);
 });
 gulp.task('publish-html', function () {
-  gulp.src(['./build/rev/**/*.json', './index.html'])
+  return gulp.src(['./build/rev/**/*.json', './index.html'])
     .pipe(revCollector({
       dirReplacements: {
         'build/': ''
@@ -74,6 +74,11 @@ gulp.task('publish-html', function () {
     .pipe(gulp.dest('./dist/'));
 });
 
-gulp.task('publish', ['publish-css','publish-js','publish-html']);
+gulp.task('publish', function (callback) {
+  runSequence(
+    ['publish-css', 'publish-js'],
+    'publish-html',
+    callback);
+});
 
 
