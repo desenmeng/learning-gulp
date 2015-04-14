@@ -6,9 +6,9 @@
 'use strict';
 
 module.exports = {
-    entry: "./index",
-    output: {
-        path: __dirname + "/build",
-        filename: "bundle-[hash].js"
-    }
+  entry: "./js",
+  output: {
+    path: __dirname + "/build",
+    filename: "app.js"
+  }
 };

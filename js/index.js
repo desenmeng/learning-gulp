@@ -5,6 +5,6 @@
 
 'use strict';
 
-var plus = require('./lib/plus');
+var plus = require('./plus');
 
-console.log(plus(1, 2));
+console.log(plus(2, 2));
