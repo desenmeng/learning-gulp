@@ -1,16 +1,21 @@
 /**
  * learning-gulp - gulpfile.js
  * Created by mengdesen on 15/4/14.
+ * Last modified by nieweidong on 2015/04/15
  */
 
 'use strict';
 
 var gulp = require('gulp');
-var webpack = require('gulp-webpack');
 var uglify = require('gulp-uglify');
-var qn = require('gulp-qn');
 var concat = require('gulp-concat');
 var shrink = require('gulp-cssshrink');
+
+// 静态文件打包合并
+var webpack = require('gulp-webpack');
+// 上传七牛sdn
+var qn = require('gulp-qn');
+// MD5戳
 var rev = require('gulp-rev');
 var revCollector = require('gulp-rev-collector');
 var revReplace = require("gulp-rev-replace");
