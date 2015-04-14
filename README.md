@@ -12,7 +12,9 @@
 
 ## 使用方式
 > npm install
+
 成功之后执行测试命令：
 > gulp watch
+
 发布命令
 > gulp publish
