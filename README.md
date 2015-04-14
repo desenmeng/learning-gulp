@@ -19,3 +19,5 @@
 
 发布命令：
 > gulp publish
+
+执行结果注意观察 **./dist/index.html** 和 **./build/文件夹**
